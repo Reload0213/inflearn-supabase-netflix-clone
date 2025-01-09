@@ -1,4 +1,4 @@
-// import UI from './ui';
+import UI from './ui';
 
 export const metadata = {
     title: 'TMDBFLIX',
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function Home() {
-    return <main>Netflix Clone</main>;
+    return <UI />;
 }
