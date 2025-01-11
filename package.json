@@ -3,8 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
+        "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
         "start": "next start",
         "generate-types": "npx supabase gen types typescript --project-id rrbhagjhamozeoqsyken --schema public > types_db.ts",
         "lint": "next lint"
@@ -17,10 +16,12 @@
         "@supabase/ssr": "^0.5.1",
         "@supabase/supabase-js": "^2.47.12",
         "@tanstack/react-query": "^5.55.0",
+        "cross-env": "^7.0.3",
         "next": "14.2.7",
         "react": "^18",
         "react-dom": "^18",
         "react-dropzone": "^14.3.5",
+        "react-intersection-observer": "^9.14.1",
         "recoil": "^0.7.7"
     },
     "devDependencies": {

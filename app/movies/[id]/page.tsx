@@ -1,6 +1,19 @@
 import { getMovieDetail } from 'actions/movieActions';
 import UI from './ui';
 
+// generateMetadata를 layout.js 혹은 page.js 파일에서 사용하면 next에서 자동으로 메타데이터 반영
+export async function generateMetadata({ params }) {
+    const movie = await getMovieDetail(params?.id);
+
+    return {
+        title: movie.title,
+        description: movie.overview,
+        openGraph: {
+            images: [movie.image_url],
+        },
+    };
+}
+
 export default async function MovieDetail({ params }) {
     const movie = await getMovieDetail(params?.id);
 

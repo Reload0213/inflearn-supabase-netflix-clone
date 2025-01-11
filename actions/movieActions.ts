@@ -9,14 +9,33 @@ const handleError = (error) => {
     }
 };
 
-export async function searchMovies(search = '') {
+export async function searchMovies({ search, page, pageSize }) {
     const supabase = await createServerSupabaseClient();
 
-    const { data, error } = await supabase.from('movie').select('*').ilike('title', `%${search}%`);
+    const { data, count, error } = await supabase
+        .from('movie')
+        .select('*', { count: 'exact' })
+        .ilike('title', `%${search}%`)
+        .range((page - 1) * pageSize, page * pageSize - 1);
 
-    handleError(error);
+    const hasNextPage = count > page * pageSize;
 
-    return data;
+    if (error) {
+        console.error(error);
+        return {
+            data: [],
+            count: 0,
+            page: null,
+            pageSize: null,
+            error,
+        };
+    }
+    return {
+        data,
+        page,
+        pageSize,
+        hasNextPage,
+    };
 }
 
 export async function getMovieDetail(id) {
