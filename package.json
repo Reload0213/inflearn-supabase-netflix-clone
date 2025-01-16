@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
+        "build": "next build",
         "start": "next start",
         "generate-types": "npx supabase gen types typescript --project-id rrbhagjhamozeoqsyken --schema public > types_db.ts",
         "lint": "next lint"
